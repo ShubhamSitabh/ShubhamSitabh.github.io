@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffcccc; /* Baby pink background */
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        #box {
+            position: absolute;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: left 5s ease-in-out;
+        }
+        #photos {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: flip 2s forwards;
+            display: none;
+        }
+        @keyframes flip {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(180deg);
+            }
+        }
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            color: #333;
+            display: none;
+            z-index: 2;
+        }
+        #character {
+            position: absolute;
+            left: -200px; /* Initial position */
+            top: 50%;
+            transform: translateY(-50%);
+            animation: drag 5s forwards; /* Animation duration */
+        }
+        @keyframes drag {
+            0% { left: -200px; } /* Initial position */
+            50% { left: 50%; } /* Dragging position */
+            100% { left: 100%; } /* End position */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="box" src="https://via.placeholder.com/200" alt="Box" onclick="explode()">
+        <div id="photos">
+            <img class="photo" src="photo1.jpg" alt="Photo 1">
+            <img class="photo" src="photo2.jpg" alt="Photo 2">
+            <!-- Add more photo elements as needed -->
+        </div>
+        <div id="message">
+            <p>Happy Birthday to Ayushi Nayak</p>
+            <p>From Anjul Gupta</p>
+            <p>🎉🎈🎂</p>
+        </div>
+        <img id="character" src="character1.png" alt="Character">
+    </div>
+
+    <script>
+        function explode() {
+            var box = document.getElementById('box');
+            box.style.left = '100%';
+            box.src = 'https://via.placeholder.com/200'; // Replace with explosion image
+            setTimeout(showPhotos, 5000); // Show photos after 5 seconds
+        }
+
+        function showPhotos() {
+            var photos = document.getElementById('photos');
+            photos.style.display = 'block';
+            var photoElements = document.getElementsByClassName('photo');
+            for (var i = 0; i < photoElements.length; i++) {
+                photoElements[i].style.display = 'block';
+            }
+            setTimeout(showMessage, 5000); // Show message after 5 seconds
+        }
+
+        function showMessage() {
+            var message = document.getElementById('message');
+            message.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
